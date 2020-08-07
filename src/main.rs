@@ -23,6 +23,8 @@ fn main() {
     let mut combined_img = image::ImageBuffer::new(dwidth, height);
 
     for (x, y, pixel) in combined_img.enumerate_pixels_mut() {
+        // todo: pass in param to use original as either left, right, top or bottom
+        // if top or bottom, vertical flip vs horizontal
         if x < width {
             *pixel = *mir.get_pixel(x, y);
         } else {
@@ -33,5 +35,6 @@ fn main() {
 
     writeln!(stdout, "{}, {}", "got path: ", &args.path).unwrap();
     writeln!(stdout, "combined output dimensions {:?}", combined_img.dimensions()).unwrap();
+    // todo: pass in parameter to specify output path / name 
     combined_img.save("fixtures/test.png").unwrap();
 }
